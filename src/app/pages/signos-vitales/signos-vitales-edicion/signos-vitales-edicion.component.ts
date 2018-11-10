@@ -70,14 +70,14 @@ export class SignosVitalesEdicionComponent implements OnInit {
     this.Signosvitales.temperatura = this.form.value['temperatura'];
     this.Signosvitales.ritmo_respiratorio = this.form.value['ritmo_respiratorio'];
     this.Signosvitales.paciente = this.form.value['paciente'];
-    //this.Signosvitales.fecha = this.form.value['fecha'];
-    var tzoffset = (this.form.value['fecha']).getTimezoneOffset() * 60000;
-    var localISOTime = (new Date(Date.now() - tzoffset)).toISOString()
-    this.Signosvitales.fecha = localISOTime;
-
+    this.Signosvitales.fecha = this.form.value['fecha'];
+    /*var tzoffset = (this.form.value['fecha']).getTimezoneOffset() * 60000;
+    var localISOTime = (new Date(Date.now() - tzoffset)).toISOString();
+    this.Signosvitales.fecha = localISOTime;*/
+    //console.log(this.Signosvitales.fecha);
     if(this.edicion){
       //actualizar
-      console.log(this.Signosvitales)
+      
       this.signosVitalesServices.modificar(this.Signosvitales).subscribe(data => {
         this.signosVitalesServices.listar().subscribe(Signosvitales => {
           this.signosVitalesServices.signosCambio.next(Signosvitales);
